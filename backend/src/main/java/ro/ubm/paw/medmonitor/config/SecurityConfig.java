@@ -16,7 +16,7 @@ public class SecurityConfig {
                 .sessionManagement(s -> s.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
                         // temporar
-                        .requestMatchers("/api/**").permitAll()
+                        .requestMatchers("/api/**", "/error").permitAll()
                         .anyRequest().authenticated());
         return http.build();
     }
