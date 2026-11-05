@@ -17,4 +17,11 @@ public interface AlertaRepository extends JpaRepository<Alerta, Long> {
             order by a.creatLa desc
             """)
     List<Alerta> findNecititeByMedicId(Long medicId);
+
+    @Query("""
+            select count(a) > 0 from Alerta a
+            where a.id = :alertaId
+              and a.masuratoare.pacient in (select p from Medic m join m.pacienti p where m.utilizator.email = :email)
+            """)
+    boolean apartineMedicului(Long alertaId, String email);
 }

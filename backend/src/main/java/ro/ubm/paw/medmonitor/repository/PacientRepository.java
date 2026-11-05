@@ -10,4 +10,6 @@ public interface PacientRepository extends JpaRepository<Pacient, Long> {
 
     @Query("select p from Medic m join m.pacienti p where m.id = :medicId order by p.nume, p.prenume")
     List<Pacient> findByMedicId(Long medicId);
+
+    boolean existsByIdAndUtilizatorEmail(Long id, String email);
 }
